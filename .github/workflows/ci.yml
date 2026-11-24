@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate Python, JSON manifest, and PWA files
+        run: |
+          python -m py_compile radio/next_track.py
+          python -c "import json; json.load(open('web/manifest.webmanifest', encoding='utf-8'))"
+          test -f web/index.html && test -f web/sw.js && test -f web/stream.m3u
