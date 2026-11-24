@@ -2,6 +2,14 @@
 
 **WERRadio**, WerrOzan 53-Koma & Güneş Dili AI müzik ekosisteminden beslenen, düşük bellekli (~120 MB RAM) ve minimum disk kullanımlı (<50 MB dönen arabellek) **7/24 kesintisiz internet radyosu** ve kurulabilir **PWA (App-Like)** radyo arayüzüdür.
 
+## ⚡ 30 Saniyede Hızlı Başlangıç
+
+```bash
+git clone https://github.com/pCwOrM/WERRadio.git && cd WERRadio
+python -m http.server 8080 --directory web
+# Tarayıcıda aç: http://localhost:8080  (veya canlı yayın: https://rad.werr.io)
+```
+
 ## Mimari
 
 ```text
