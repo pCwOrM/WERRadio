@@ -1,0 +1,12 @@
+.env
+.env.*
+*.env
+*.log
+*.flac
+*.mp3
+*.part
+__pycache__/
+.DS_Store
+Thumbs.db
+catalog.json
+shuffle_queue.json

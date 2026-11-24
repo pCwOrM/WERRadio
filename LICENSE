@@ -1,0 +1,38 @@
+Business Source License 1.1 (BSL 1.1)
+
+Licensor:
+  ITouch Systems · Çukurova Üniversitesi Teknokent
+  (ITouch Bilişim Sistemleri Ltd. Şti.)
+  https://werr.io · https://rad.werr.io · ask@answerr.me
+
+Licensed Work:
+  WERRadio — 7/24 Hybrid AI Streaming Radio Engine, Liquidsoap/Icecast2
+  Orchestration & Installable PWA Radio Frontend (rad.werr.io / werrad.io)
+
+Additional Use Grant:
+  You may make use of the Licensed Work for non-production purposes, academic
+  research, personal evaluation, and open-source educational study without fee.
+  Production, commercial SaaS/broadcast hosting, or commercial redistribution
+  requires a separate commercial license from the Licensor (e.g. authorized
+  commercialization partner agreements).
+
+Change Date:
+  2030-11-24
+
+Change License:
+  Apache License, Version 2.0
+
+--------------------------------------------------------------------------------
+BUSINESS SOURCE LICENSE 1.1 TERMS
+--------------------------------------------------------------------------------
+The Licensor hereby grants you the right to copy, modify, create derivative
+works, redistribute, and make non-production use of the Licensed Work. The
+Licensor may make Production Use of the Licensed Work available under the terms
+of a separate commercial license.
+
+On the Change Date, the Licensed Work will be governed by the Change License
+(Apache-2.0) solely for versions released on or before the Change Date.
+
+THE LICENSED WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.

@@ -1,0 +1,25 @@
+settings.log.stdout.set(true)
+
+def get_next_track() =
+  uri = string.trim(process.read("/usr/bin/python3 /opt/werrozan-radio/next_track.py"))
+  request.create(uri)
+end
+
+radio = request.dynamic(id="werrozan_kesfet", get_next_track)
+radio = crossfade(duration=2.5, radio)
+radio = mksafe(radio)
+
+output.icecast(
+  %mp3(bitrate=192, stereo=true, samplerate=44100),
+  host="127.0.0.1",
+  port=8000,
+  password="__ICECAST_SOURCE_PASSWORD__",
+  mount="/stream",
+  name="WerrOzan FM — 53-Koma & Güneş Dili AI Radyo",
+  description="WerrOzan Keşfet kütüphanesinden 7/24 kesintisiz AI müzik yayını",
+  genre="World / Makam / Hybrid AI",
+  url="https://rad.werr.io",
+  public=false,
+  encoding="UTF-8",
+  radio
+)

@@ -1,0 +1,17 @@
+{
+  "name": "WerrOzan FM — Canlı AI Radyo",
+  "short_name": "WerrOzan FM",
+  "description": "WerrOzan Keşfet kütüphanesinden 7/24 kesintisiz shuffle AI müzik radyosu.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080b12",
+  "theme_color": "#080b12",
+  "lang": "tr",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>WerrOzan FM — Canlı 53-Koma &amp; Güneş Dili AI Radyo</title>
+  <meta name="description" content="WerrOzan Keşfet kütüphanesinden 7/24 kesintisiz shuffle AI müzik radyosu." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="WerrOzan FM" />
+  <meta property="og:title" content="WerrOzan FM — Canlı AI Müzik Radyosu" />
+  <meta property="og:description" content="53-Koma Türk Makamı, Güneş Dili diksiyon ve WERR Z/9Z motoruyla üretilen eserlerden 7/24 kesintisiz shuffle canlı yayın." />
+  <meta property="og:url" content="https://rad.werr.io/" />
+  <meta property="og:image" content="https://rad.werr.io/icon-512.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#080b12" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="./icon-512.png" />
+  <style>
+    :root { --bg:#080b12; --panel:#101624; --border:#23304d; --text:#eef2ff; --muted:#8b9bc1; --accent:#f59e0b; --cyan:#38bdf8; --ok:#10b981; }
+    * { box-sizing:border-box; }
+    html, body { overscroll-behavior-y:contain; -webkit-tap-highlight-color:transparent; }
+    body {
+      margin:0; min-height:100dvh; font-family:Inter,system-ui,-apple-system,sans-serif;
+      background:radial-gradient(circle at 15% 10%, #16223d 0%, var(--bg) 55%);
+      color:var(--text); display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:calc(16px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
+    }
+    button, a, input { touch-action:manipulation; }
+    .card {
+      width:100%; max-width:520px; background:rgba(16,22,36,0.92); border:1px solid var(--border);
+      border-radius:18px; padding:20px; box-shadow:0 20px 50px rgba(0,0,0,0.45); display:grid; gap:16px;
+    }
+    .head { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+    .brand { display:flex; align-items:center; gap:11px; min-width:0; }
+    .brand img { width:42px; height:42px; border-radius:10px; flex-shrink:0; }
+    .brand h1 { margin:0; font-size:1.22rem; letter-spacing:-0.02em; }
+    .brand small { display:block; color:var(--muted); font-size:0.76rem; }
+    .head-right { display:flex; align-items:center; gap:8px; margin-left:auto; }
+    .install-btn {
+      display:none; align-items:center; justify-content:center; gap:5px; min-height:34px; padding:5px 12px;
+      border-radius:999px; border:1px solid rgba(16,185,129,0.55); background:rgba(16,185,129,0.12);
+      color:#6ee7b7; font-size:0.78rem; font-weight:700; cursor:pointer; white-space:nowrap;
+    }
+    .live-pill {
+      display:inline-flex; align-items:center; gap:6px; padding:6px 11px; min-height:34px; border-radius:999px;
+      background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.45); color:#6ee7b7; font-size:0.74rem; font-weight:700; white-space:nowrap;
+    }
+    .dot { width:8px; height:8px; border-radius:50%; background:#10b981; animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.45;transform:scale(.85);} }
+    .now {
+      display:flex; gap:14px; align-items:center; background:#0b101b; border:1px solid var(--border);
+      border-radius:14px; padding:14px;
+    }
+    .cover { width:84px; height:84px; border-radius:12px; object-fit:cover; border:1px solid var(--border); flex-shrink:0; background:#151d30; }
+    .meta { min-width:0; flex:1; }
+    .label { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); font-weight:700; }
+    .title { font-size:1.05rem; font-weight:700; margin:3px 0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .artist { font-size:0.86rem; color:var(--cyan); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .stats { font-size:0.74rem; color:var(--muted); margin-top:6px; }
+    .controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .play-btn {
+      flex:1; min-width:170px; min-height:48px; border:none; border-radius:12px; cursor:pointer;
+      background:linear-gradient(135deg,#f59e0b,#38bdf8); color:#050a12; font-weight:800; font-size:0.96rem;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .play-btn:active { transform:scale(0.98); }
+    .vol-wrap { display:flex; align-items:center; gap:8px; background:#0b101b; border:1px solid var(--border); border-radius:12px; padding:8px 12px; min-height:48px; }
+    input[type="range"] { width:88px; accent-color:#38bdf8; cursor:pointer; }
+    .links { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; padding-top:8px; border-top:1px solid rgba(35,48,77,0.6); }
+    .btn-link {
+      text-decoration:none; color:var(--muted); font-size:0.78rem; font-weight:600; min-height:40px;
+      padding:8px 8px; border-radius:10px; border:1px solid var(--border); background:#0b101b;
+      display:inline-flex; align-items:center; justify-content:center; text-align:center;
+    }
+    .btn-link:hover { color:var(--text); border-color:var(--cyan); }
+    .foot { margin-top:14px; text-align:center; font-size:0.74rem; color:var(--muted); max-width:520px; line-height:1.5; }
+    .foot a { color:var(--muted); text-decoration:none; }
+    .foot a:hover { color:var(--cyan); }
+    @media (max-width: 480px) {
+      .card { padding:16px; gap:14px; }
+      .cover { width:70px; height:70px; }
+      .vol-wrap { width:100%; justify-content:space-between; }
+      .vol-wrap input[type="range"] { flex:1; width:auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="head">
+      <div class="brand">
+        <img src="./icon-192.png" alt="WerrOzan FM" />
+        <div>
+          <h1>WerrOzan FM</h1>
+          <small>53-Koma &amp; Güneş Dili 7/24 AI Radyo</small>
+        </div>
+      </div>
+      <div class="head-right">
+        <button id="btnInstall" class="install-btn" type="button" title="WerrOzan FM'i uygulama olarak kur">📲 Kur</button>
+        <div class="live-pill"><span class="dot"></span> <span id="liveState">CANLI</span></div>
+      </div>
+    </div>
+
+    <div class="now">
+      <img id="cover" class="cover" src="./icon-512.png" alt="Kapak" />
+      <div class="meta">
+        <div class="label">Şu An Çalıyor · 🔀 Shuffle</div>
+        <div id="trackTitle" class="title">Yayın Yükleniyor...</div>
+        <div id="trackArtist" class="artist">WerrOzan Keşfet</div>
+        <div id="trackStats" class="stats">MP3 192 kbps · Kesintisiz Crossfade</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="btnPlay" class="play-btn" type="button">▶ Yayını Başlat</button>
+      <div class="vol-wrap">
+        <span id="volIcon">🔊</span>
+        <input id="vol" type="range" min="0" max="100" value="85" aria-label="Ses Seviyesi" />
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="btn-link" href="https://ozan.werr.io/kesfet.html">🎧 Keşfet</a>
+      <a class="btn-link" href="https://ozan.werr.io/">🎹 Stüdyo</a>
+      <a class="btn-link" href="/stream.m3u">📻 .M3U</a>
+    </div>
+  </main>
+
+  <footer class="foot">
+    © 2026 <a href="https://werr.io" target="_blank" rel="noopener">ITouch Systems · Çukurova Üniversitesi Teknokent</a> · <a href="mailto:ask@answerr.me">ask@answerr.me</a>
+  </footer>
+
+  <audio id="radioAudio" preload="none"></audio>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+    }
+
+    let deferredPrompt = null;
+    const btnInstall = document.getElementById("btnInstall");
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      btnInstall.style.display = "inline-flex";
+    });
+    btnInstall.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      try { await deferredPrompt.userChoice; } catch {}
+      deferredPrompt = null;
+      btnInstall.style.display = "none";
+    });
+    window.addEventListener("appinstalled", () => {
+      deferredPrompt = null;
+      btnInstall.style.display = "none";
+    });
+
+    const audio = document.getElementById("radioAudio");
+    const btnPlay = document.getElementById("btnPlay");
+    const vol = document.getElementById("vol");
+    const titleEl = document.getElementById("trackTitle");
+    const artistEl = document.getElementById("trackArtist");
+    const statsEl = document.getElementById("trackStats");
+    const coverEl = document.getElementById("cover");
+    const liveEl = document.getElementById("liveState");
+    const BASE_TITLE = "WerrOzan FM — Canlı 53-Koma & Güneş Dili AI Radyo";
+    let catalogMap = new Map();
+    let playing = false;
+    let reconnectTimer = null;
+    let scrollTimer = null;
+    let scrollText = "";
+    let scrollPos = 0;
+
+    audio.volume = 0.85;
+    vol.addEventListener("input", () => {
+      audio.volume = Number(vol.value) / 100;
+    });
+
+    function syncTitleScroll(t, a) {
+      if (!playing) {
+        if (scrollTimer) { clearInterval(scrollTimer); scrollTimer = null; }
+        scrollText = "";
+        document.title = BASE_TITLE;
+        return;
+      }
+      const next = `▶ ${t} · ${a} — WerrOzan FM   |   `;
+      if (scrollText !== next) {
+        if (scrollTimer) clearInterval(scrollTimer);
+        scrollText = next;
+        scrollPos = 0;
+        document.title = `▶ ${t} · ${a} — WerrOzan FM`;
+        scrollTimer = setInterval(() => {
+          if (!playing) return;
+          const s = scrollText.slice(scrollPos) + scrollText.slice(0, scrollPos);
+          document.title = s.slice(0, 48);
+          scrollPos = (scrollPos + 1) % scrollText.length;
+        }, 320);
+      }
+    }
+
+    async function loadCovers() {
+      try {
+        const res = await fetch(`/catalog.json?t=${Date.now()}`);
+        const data = await res.json();
+        for (const item of data.items || []) {
+          if (item.title) catalogMap.set(item.title.trim().toLowerCase(), item);
+        }
+      } catch {}
+    }
+
+    function updateMediaSession(t, a, cov) {
+      syncTitleScroll(t, a);
+      if ("mediaSession" in navigator) {
+        const artSrc = (cov && /\.(png|jpe?g|webp)(\?|$)/i.test(cov)) ? cov : new URL("./icon-512.png", window.location.href).href;
+        try {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: t,
+            artist: a,
+            album: "WerrOzan FM (rad.werr.io)",
+            artwork: [
+              { src: artSrc, sizes: "192x192", type: "image/png" },
+              { src: artSrc, sizes: "512x512", type: "image/png" },
+            ],
+          });
+          navigator.mediaSession.playbackState = playing ? "playing" : "paused";
+          navigator.mediaSession.setActionHandler("play", startRadio);
+          navigator.mediaSession.setActionHandler("pause", stopRadio);
+          navigator.mediaSession.setActionHandler("stop", stopRadio);
+        } catch {}
+      }
+    }
+
+    let userStopped = false;
+    function scheduleReconnect(delayMs = 1500) {
+      if (!playing || userStopped || reconnectTimer) return;
+      reconnectTimer = setTimeout(() => {
+        reconnectTimer = null;
+        if (playing && !userStopped) startRadio();
+      }, delayMs);
+    }
+
+    audio.addEventListener("stalled", () => scheduleReconnect(1500));
+    audio.addEventListener("error", () => scheduleReconnect(2000));
+    audio.addEventListener("ended", () => scheduleReconnect(1000));
+    audio.addEventListener("pause", () => {
+      if (playing && !userStopped) scheduleReconnect(1200);
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (playing && !userStopped && audio.paused) {
+        audio.play().catch(() => scheduleReconnect(500));
+      }
+      if (playing && !userStopped) pollNowPlaying();
+    });
+
+    function startRadio() {
+      userStopped = false;
+      if (reconnectTimer) { clearTimeout(reconnectTimer); reconnectTimer = null; }
+      audio.preload = "auto";
+      audio.src = `/stream?t=${Date.now()}`;
+      audio.play().then(() => {
+        playing = true;
+        btnPlay.textContent = "⏸ Yayını Durdur";
+        updateMediaSession(titleEl.textContent, artistEl.textContent, coverEl.src);
+      }).catch(() => {});
+    }
+
+    function stopRadio() {
+      userStopped = true;
+      playing = false;
+      if (reconnectTimer) { clearTimeout(reconnectTimer); reconnectTimer = null; }
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+      btnPlay.textContent = "▶ Yayını Başlat";
+      updateMediaSession(titleEl.textContent, artistEl.textContent, coverEl.src);
+    }
+
+    btnPlay.addEventListener("click", () => (playing ? stopRadio() : startRadio()));
+
+    const decodeEntities = (s) => String(s || "")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+      .replace(/&quot;/g, '"')
+      .replace(/&#0?39;|&apos;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&");
+
+    async function pollNowPlaying() {
+      try {
+        const res = await fetch(`/status-json.xsl?t=${Date.now()}`);
+        const data = await res.json();
+        const raw = data?.icestats?.source;
+        const src = Array.isArray(raw) ? raw[0] : raw;
+        if (!src) return;
+        const fullTitle = decodeEntities(src.title || src.yp_currently_playing || "WerrOzan AI Yayın").trim();
+        let artist = decodeEntities(src.artist || "").trim();
+        let title = fullTitle;
+        if (!artist && fullTitle.includes(" - ")) {
+          const idx = fullTitle.indexOf(" - ");
+          artist = fullTitle.slice(0, idx).trim();
+          title = fullTitle.slice(idx + 3).trim();
+        }
+        const match = catalogMap.get(title.toLowerCase());
+        if (!artist && match?.author_name) artist = match.author_name;
+        const cov = (match?.cover_url && /\.(png|jpe?g|webp)/i.test(match.cover_url)) ? match.cover_url : "./icon-512.png";
+        titleEl.textContent = title || "WerrOzan FM";
+        artistEl.textContent = artist || "WerrOzan Topluluk";
+        coverEl.src = cov;
+        const listeners = Number(src.listeners || 0);
+        liveEl.textContent = listeners > 0 ? `CANLI · ${listeners} Dinleyici` : "CANLI";
+        statsEl.textContent = `MP3 ${src.bitrate || 192} kbps · Kesintisiz Crossfade`;
+        updateMediaSession(titleEl.textContent, artistEl.textContent, cov);
+      } catch {}
+    }
+
+    loadCovers().then(pollNowPlaying);
+    setInterval(pollNowPlaying, 8000);
+    setInterval(loadCovers, 120000);
+  </script>
+</body>
+</html>
